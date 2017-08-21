@@ -29,7 +29,7 @@ class TodoView(View):
     def get(self, request):
         try:
             todos = Query(Todo).descending('createdAt').find()
-        except LeanCloudError, e:
+        except LeanCloudError as e:
             if e.code == 101:  # 服务端对应的 Class 还没创建
                 todos = []
             else:
