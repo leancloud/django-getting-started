@@ -4,7 +4,7 @@ from gevent import monkey
 monkey.patch_all()
 
 import os
-# 设置 Django 项目配置文件
+# Django configuration
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 import leancloud
@@ -21,8 +21,8 @@ leancloud.init(APP_ID, master_key=MASTER_KEY)
 
 application = engine
 
-
+# The code below will only be executed locally (`lean up`),
+# and will not be executed on the cloud.
 if __name__ == '__main__':
-    # 只在本地开发环境执行的代码
     server = WSGIServer(('localhost', PORT), application)
     server.serve_forever()

@@ -10,7 +10,7 @@
       <form action="/todos" method="POST">
         {% csrf_token %}
         <input type="text" name="content" />
-        <input type="submit" value="新增" />
+        <input type="submit" value="New todo" />
       </form>
       <ul>
         {% for todo in todos %}
