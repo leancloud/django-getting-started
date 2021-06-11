@@ -9,6 +9,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 import leancloud
 from gevent.pywsgi import WSGIServer
+from geventwebsocket.handler import WebSocketHandler
 
 from cloud import engine
 
@@ -21,8 +22,6 @@ leancloud.init(APP_ID, master_key=MASTER_KEY)
 
 application = engine
 
-# The code below will only be executed locally (`lean up`),
-# and will not be executed on the cloud.
 if __name__ == '__main__':
-    server = WSGIServer(('localhost', PORT), application)
+    server = WSGIServer(('', PORT), application, handler_class=WebSocketHandler)
     server.serve_forever()
