@@ -23,6 +23,8 @@ leancloud.init(APP_ID, master_key=MASTER_KEY)
 application = engine
 
 if __name__ == '__main__':
-    log = 'default' if os.environ['LEANCLOUD_APP_ENV'] == 'development' else None
-    server = WSGIServer(('', PORT), application, log=log, handler_class=WebSocketHandler)
+    if os.environ['LEANCLOUD_APP_ENV'] == 'development':
+        server = WSGIServer(('localhost', PORT), application, handler_class=WebSocketHandler)
+    else:
+        server = WSGIServer(('0.0.0.0', PORT), application, log=None, handler_class=WebSocketHandler)
     server.serve_forever()
