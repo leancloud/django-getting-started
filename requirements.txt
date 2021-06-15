@@ -1,3 +1,4 @@
 django>=1.11.0,<2.0.0; python_version <= '2.7'
 django>=2.2.0,<3.0.0; python_version >= '3.6'
 leancloud>=2.9.3,<3.0.0
+gevent-websocket>=0.10.1,<1.0.0
